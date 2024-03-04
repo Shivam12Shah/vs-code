@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title>index</title>
+</head>
+
+<body>
+  <div id="main">
+    <!-- <div id="m-left">
+      <i class="ri-file-copy-line" id="close-file"></i>
+      <i class="ri-search-line"></i>
+      <i class="ri-git-branch-line"></i>
+    </div> -->
+    <div id="overlay">
+      <div id="popup">
+        <form id="editform"  method="post">
+          <h2>Rename</h2>
+          <input id="raju" type="text" name="newname">
+          <input type="submit" value="submit">
+        </form>
+      </div>
+    </div>
+    <div id="editor">
+      <div id="left">
+        <div id="heading">
+          <h3>VS Code</h3>
+          <div id="icon">
+            <i id="file-icon" class="ri-file-3-line"></i>
+            <i id="folder-icon" class="ri-folder-3-line"></i>
+            <a href="/"><i class="ri-refresh-line"></i></a>
+            <i class="ri-file-copy-2-line"></i>
+          </div>
+        </div>
+        <div id="filename">
+          <form action="/filename">
+            <input id="fileinput" type="text" name="filename" placeholder="file name">
+          </form>
+          <form action="/foldername">
+            <input id="folderinput" type="text" name="foldername" placeholder="folde name">
+          </form>
+        </div>
+        <% files.forEach((dets)=>{ %>
+          <div class="file">
+            <div class="details">
+              <div class="f-name">
+                <a href="/file/<%= dets.name %>">
+                  <% if(dets.isDirectory()===true){ %>
+                    <i class="ri-folder-3-fill"></i>
+                    <%} else{ %>
+                      <i class="ri-file-3-fill"></i>
+                      <% } %>
+                        <h5>
+                          <%= dets.name%>
+                        </h5>
+                </a>
+              </div>
+              <div class="edit-del">
+                <a href=""><i class="ri-pencil-line"></i></a>
+                <% if(dets.isDirectory()===true){ %>
+                  <a href="/deletefolder/<%=dets.name%>"><i class="ri-delete-bin-line"></i></a>
+                  <%} else{ %>
+                    <a href="/deletefile/<%=dets.name%>"><i class="ri-delete-bin-line"></i></a>
+                    <% } %>
+
+              </div>
+            </div>
+          </div>
+
+          <%})%>
+
+      </div>
+      <div id="right">
+        <div id="inputdiv">
+          <h5>
+            <%=name%> <a href="/"> <i class="ri-close-line"></i></a>
+          </h5>
+          <form id="form" action="/edit/<%=name%>">
+            <textarea name="editedtext" id="textarea"></textarea>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./javascripts/script.js"></script>
+</body>
+
+</html>
